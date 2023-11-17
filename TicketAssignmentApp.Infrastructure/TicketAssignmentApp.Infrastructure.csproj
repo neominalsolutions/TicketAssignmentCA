@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="SMS\" />
+    <Folder Include="Storage\" />
+    <Folder Include="Persistance\Dapper\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TicketAssignment.Domain\TicketAssignment.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

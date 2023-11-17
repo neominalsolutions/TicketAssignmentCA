@@ -8,6 +8,6 @@ namespace TicketAssignment.Domain.Services
 {
   public interface ITicketAssignment
   {
-    void CheckTicketAssignmentRules(string ticketId, string employeeId, int estimatedHour);
+    void AssignTicket(string ticketId, string employeeId, int estimatedHour);
   }
 }

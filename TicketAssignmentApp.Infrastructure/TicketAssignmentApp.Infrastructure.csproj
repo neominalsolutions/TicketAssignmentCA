@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketAssignment.Domain\TicketAssignment.Domain.csproj" />
+    <ProjectReference Include="..\TicketAssignmentApp.Persistance\TicketAssignmentApp.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

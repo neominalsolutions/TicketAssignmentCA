@@ -13,14 +13,15 @@ namespace TicketAssignmentApp.Infrastructure.Persistance.EF
   // Grasp Polymophisim yapısını ve Liskov Substitution principle
   // Base sınıf özelliklerini koruyayarak bir çok db işlemini baseEFCrud repository üzerinden yaptığımız protected variations da aynı zamanda uygulamış oluruz.
   // Generic Repository Pattern : 
-  public abstract class EFCrudRepository<TEntity, TContext> : IRepository<TEntity> 
+  // EFCrudRepository EFReadOnlyRepository select işlemlerini kalıtım alıp üzerinen write işlemlerini IWriteOnlyRepository üzerinden ekledik
+  public abstract class EFCrudRepository<TEntity, TContext> : EFReadOnlyRepository<TEntity,TContext>, IWriteOnlyRepository<TEntity> 
     where TEntity:Entity
     where TContext: DbContext
   {
     protected readonly TContext context; // Dependecy Inversion, DbContext türeyen tüm dblere bu altyapı sayesinde bağlantı kurabilirim.
     protected readonly DbSet<TEntity> table;
     
-    public EFCrudRepository(TContext context) // Dependecy Injection
+    public EFCrudRepository(TContext context):base(context) // Dependecy Injection
     {
       this.context = context;
       this.table = context.Set<TEntity>();
@@ -41,21 +42,6 @@ namespace TicketAssignmentApp.Infrastructure.Persistance.EF
         this.table.Remove(entity);
         this.context.SaveChanges();
       }
-    }
-
-    public virtual IReadOnlyList<TEntity> FindAll()
-    {
-      return this.table.ToList();
-    }
-
-    public virtual TEntity FindById(string key)
-    {
-      return this.table.Find(key);
-    }
-
-    public virtual IQueryable<TEntity> FindWithCriteria(Expression<Func<TEntity, bool>> lambda)
-    {
-      return this.table.Where(lambda).AsQueryable();
     }
 
     public virtual void Update(TEntity entity)

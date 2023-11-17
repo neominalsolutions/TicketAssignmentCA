@@ -11,18 +11,22 @@ namespace TicketAssignment.Domain.Services
   public class DailyTicketAssignmentService : ITicketAssignment
   {
     private IEmployeeTicketRepository employeeTicketRepository;
-
-    public DailyTicketAssignmentService(IEmployeeTicketRepository employeeTicketRepository)
+    private readonly IEmployeeRepository employeeRepository;
+    private readonly ITicketRepository ticketRepository;
+    public DailyTicketAssignmentService(IEmployeeTicketRepository employeeTicketRepository, IEmployeeRepository employeeRepository, ITicketRepository ticketRepository)
     {
       this.employeeTicketRepository = employeeTicketRepository;
+      this.employeeRepository = employeeRepository;
+      this.ticketRepository = ticketRepository;
     }
 
     // bir günde en fazla 6 saatlik bir görev ataması yapılabilir
-    public void CheckTicketAssignmentRules(string ticketId, string employeeId, int estimatedHour)
+    public void AssignTicket(string ticketId, string employeeId, int estimatedHour)
     {
 
+   
       var dailyAssignedTicketTotalHours =  this.employeeTicketRepository
-        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
+        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date).ToList()
         .Sum(x => x.EstimatedHour);
 
       if((dailyAssignedTicketTotalHours + estimatedHour) > 6)
@@ -30,7 +34,13 @@ namespace TicketAssignment.Domain.Services
         throw new DailyTicketAssigmentOverflowException();
       }
 
-      
+      var employee = employeeRepository.FindById(employeeId);
+      var ticket = ticketRepository.FindById(ticketId);
+      employee.AssignTicket(estimatedHour, ticket);
+
+      employeeRepository.Update(employee); // Artık employee nesnesni içindeki ticket tanımı ile update et.
+
+
     }
   }
 }

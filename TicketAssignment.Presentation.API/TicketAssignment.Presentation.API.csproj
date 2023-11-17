@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketAssignmentApp.Application\TicketAssignmentApp.Application.csproj" />
+    <ProjectReference Include="..\TicketAssignmentApp.Infrastructure\TicketAssignmentApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

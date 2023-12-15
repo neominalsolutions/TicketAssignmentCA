@@ -67,7 +67,7 @@ namespace TicketAssignmentApp.Persistance.EF.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeTickets");
+                    b.ToTable("EmployeeTickets", (string)null);
                 });
 
             modelBuilder.Entity("TicketAssignment.Domain.Entities.Ticket", b =>
@@ -85,7 +85,7 @@ namespace TicketAssignmentApp.Persistance.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
             modelBuilder.Entity("TicketAssignment.Domain.Entities.EmployeeTicket", b =>

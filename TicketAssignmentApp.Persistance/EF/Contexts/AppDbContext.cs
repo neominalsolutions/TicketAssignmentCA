@@ -17,7 +17,7 @@ namespace TicketAssignmentApp.Persistance.EF.Contexts
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=TicketDB;uid=sa;pwd=1234");
+      optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=TicketDB;uid=sa;pwd=12345");
 
       base.OnConfiguring(optionsBuilder);
     }

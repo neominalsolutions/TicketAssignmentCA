@@ -34,7 +34,7 @@ namespace TicketAssignment.Domain.Services
         .ToList()
         .Sum(x => x.EstimatedHour);
 
-      if((weeklyAssignedTicketsTotalHours + estimatedHour) > 30)
+      if((weeklyAssignedTicketsTotalHours + estimatedHour) > 40)
       {
         throw new NotImplementedException("Haftalık görev atama limiti aşıldı");
       }

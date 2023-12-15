@@ -30,6 +30,7 @@ namespace TicketAssignmentApp.Infrastructure.Persistance.EF
     public virtual void Create(TEntity entity)
     {
       this.table.Add(entity);
+      //this.context.Add<TEntity>(entity);
       this.context.SaveChanges();
     }
 

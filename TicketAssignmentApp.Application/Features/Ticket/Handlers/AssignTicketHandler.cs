@@ -17,10 +17,14 @@ namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
     // indirection
     private TicketAssignmentFactory ticketAssignment;
 
+    // TicketAssignmentFactory servisi Dependecy Injection ile çağırıp
+    // Zaten TicketAssignmentFactory Program.cs dosyasında IoC tarafından üretildi.
     public AssignTicketHandler(TicketAssignmentFactory ticketAssignmentFactory)
     {
       this.ticketAssignment = ticketAssignmentFactory;
     }
+
+
 
     // Event Driven bir programlama mantığı ile yazılmış bir paket.
     public async Task Handle(AssignTicketDto request, CancellationToken cancellationToken)

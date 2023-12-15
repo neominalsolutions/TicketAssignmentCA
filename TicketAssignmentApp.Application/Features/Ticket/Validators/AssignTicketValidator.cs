@@ -14,9 +14,10 @@ namespace TicketAssignmentApp.Application.Features.Ticket.Validators
     public AssignTicketValidator()
     {
       // hata varsa 400 hata kodu olarak api dönüş yap.
-      RuleFor(x => x.EstimatedHour).LessThanOrEqualTo(30).GreaterThanOrEqualTo(1).WithMessage("En az 1 En fazla 30 saatlik bir task ataması yapılabilir");
+      RuleFor(x => x.EstimatedHour).LessThanOrEqualTo(40).GreaterThanOrEqualTo(1).WithMessage("En az 1 En fazla 40 saatlik bir task ataması yapılabilir");
       RuleFor(x => x.EmployeeId).NotNull().NotEmpty().WithMessage("Employee seçimi yapınız");
-      RuleFor(x => x.TicketId).NotNull().NotEmpty().WithMessage("Employee seçimi yapınız");
+      RuleFor(x => x.TicketId).NotNull().NotEmpty().WithMessage("Görev seçimi yapınız");
+      
     }
   }
 }

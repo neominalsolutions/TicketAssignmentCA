@@ -3,6 +3,7 @@ using TicketAssignment.Domain.Factory;
 using TicketAssignment.Domain.Repositories;
 using TicketAssignmentApp.Application.Features.Ticket.Handlers;
 using TicketAssignmentApp.Application.Features.Ticket.Validators;
+using TicketAssignmentApp.Infrastructure.Persistance.Dapper;
 using TicketAssignmentApp.Infrastructure.Persistance.EF.Repositories;
 using TicketAssignmentApp.Persistance.EF.Contexts;
 
@@ -17,6 +18,7 @@ builder.Services.AddTransient<TicketAssignmentFactory>(); // TicketAssigment Ser
 
 // hizmet çalýþtýrma gibi controller,mediator,repository gibi web request bazlý çalýþn yapýlar.
 builder.Services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
+builder.Services.AddScoped<IEmployeeRepository, DapperEmployeeRepository>();
 builder.Services.AddScoped<ITicketRepository, EFTicketRepository>();
 builder.Services.AddScoped<IEmployeeTicketRepository, EFEmployeeTicketRepository>();
 

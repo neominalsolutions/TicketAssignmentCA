@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketAssignment.Domain.Entities;
-using TicketAssignment.Domain.Services;
+using TicketAssignment.Domain.Factory;
 using TicketAssignmentApp.Application.Features.Ticket.Dtos;
 
 namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
 {
-  public class AssignTicketHandler : IRequestHandler<AssignTicketDto>
+    public class AssignTicketHandler : IRequestHandler<AssignTicketDto>
   {
     // facade işlemi yaptık
     // AssignTicketHandler => TaskAssigmentService

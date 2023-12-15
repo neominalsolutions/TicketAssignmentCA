@@ -28,6 +28,7 @@ namespace TicketAssignment.Domain.Entities
       // Information Log
       Console.WriteLine($"{ticket.Title} is Assigned to {FirstName} {LastName}");
 
+
     }
   }
 }

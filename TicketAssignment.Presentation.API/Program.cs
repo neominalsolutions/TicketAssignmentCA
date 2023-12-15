@@ -1,6 +1,6 @@
 using FluentValidation.AspNetCore;
+using TicketAssignment.Domain.Factory;
 using TicketAssignment.Domain.Repositories;
-using TicketAssignment.Domain.Services;
 using TicketAssignmentApp.Application.Features.Ticket.Handlers;
 using TicketAssignmentApp.Application.Features.Ticket.Validators;
 using TicketAssignmentApp.Infrastructure.Persistance.EF.Repositories;

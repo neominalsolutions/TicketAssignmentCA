@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketAssignment.Domain.Repositories;
+using TicketAssignment.Domain.SeedWork;
+using TicketAssignment.Domain.Services;
 
-namespace TicketAssignment.Domain.Services
+namespace TicketAssignment.Domain.Factory
 {
+  // Factory Method Design Pattern ile parametre bazlı hangi servisi dinamik olarak titkleneceğine karar verecek bir strateji yaptık
+  // GRASP Creator özelliğini kullandık.
   public class TicketAssignmentFactory
   {
     private readonly IEmployeeTicketRepository employeeTicketRepository;
@@ -23,10 +27,14 @@ namespace TicketAssignment.Domain.Services
     // 6 saat üsütnde farklı servis görevlensin
     public ITicketAssignment TicketServiceInstance(int estimatedHour)
     {
-      if (estimatedHour > 6)
+      if (estimatedHour > 6 && estimatedHour <= 40)
         return new WeeklyTicketAssignmentService(employeeTicketRepository, employeeRepository, ticketRepository);
+      else if (estimatedHour < 6 && estimatedHour >= 1)
+        return new DailyTicketAssignmentService(employeeTicketRepository, employeeRepository, ticketRepository);
+      else if (estimatedHour > 40)
+        return new MontlyTicketAssigmentService();
       else
-        return new DailyTicketAssignmentService(employeeTicketRepository,employeeRepository,ticketRepository);
+        throw new Exception("1 saatten az görev ataması yapılamaz");
 
     }
   }

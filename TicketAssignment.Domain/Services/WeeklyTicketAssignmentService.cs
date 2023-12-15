@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketAssignment.Domain.Entities;
 using TicketAssignment.Domain.Repositories;
+using TicketAssignment.Domain.SeedWork;
 
 namespace TicketAssignment.Domain.Services
 {
-  // eğer atanacak görevin yaklaşık tamamlama süresi 6 saat ve üstünde ise aynı zaman toplamda 30 saatin aldında ise haftalık görev atama poliçesi uygulansın.
-  public class WeeklyTicketAssignmentService : ITicketAssignment
+    // eğer atanacak görevin yaklaşık tamamlama süresi 6 saat ve üstünde ise aynı zaman toplamda 30 saatin aldında ise haftalık görev atama poliçesi uygulansın.
+    public class WeeklyTicketAssignmentService : ITicketAssignment
   {
     private readonly IEmployeeTicketRepository employeeTicketRepository;
     private readonly IEmployeeRepository employeeRepository;

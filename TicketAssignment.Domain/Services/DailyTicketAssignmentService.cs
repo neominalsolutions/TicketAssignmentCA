@@ -8,11 +8,13 @@ using TicketAssignment.Domain.Repositories;
 
 namespace TicketAssignment.Domain.Services
 {
+  // OPEN-CLOSED Prensibi ile Görev atama işleminin gelişime açık değişime kapalı olmasını sağladık.s
   public class DailyTicketAssignmentService : ITicketAssignment
   {
     private IEmployeeTicketRepository employeeTicketRepository;
     private readonly IEmployeeRepository employeeRepository;
     private readonly ITicketRepository ticketRepository;
+    // Dependecy Inversion Prensibi ile hangi veri kaynağı üzerinden repository yapılarını çalıştıracağımızı bilmediğimiz için araya interface yapıları koyarak TicketService ile Database arasındaki bağımlılğı azalttık. Infrastructor Layer ile Domain Layer arasındaki bu zayıf bağlılığı Hexagonal (Port And Adapter) Pattern kullanarak sağladık. IEmployeeRepository Output Port görevinde bir tanımlama.
     public DailyTicketAssignmentService(IEmployeeTicketRepository employeeTicketRepository, IEmployeeRepository employeeRepository, ITicketRepository ticketRepository)
     {
       this.employeeTicketRepository = employeeTicketRepository;

@@ -9,7 +9,7 @@ using TicketAssignment.Domain.SeedWork;
 
 namespace TicketAssignmentApp.Infrastructure.Persistance.Dapper
 {
-  public abstract class DapperRepository<TEntity, TContext> : IRepository<TEntity>
+  public abstract class DapperRepository<TEntity, TContext> : ICrudRepository<TEntity>
     where TEntity : Entity
     where TContext : DbContext
   {

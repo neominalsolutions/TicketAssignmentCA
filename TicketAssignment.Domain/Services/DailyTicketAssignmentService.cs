@@ -30,7 +30,7 @@ namespace TicketAssignment.Domain.Services
 
    
       var dailyAssignedTicketTotalHours =  this.employeeTicketRepository
-        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date).ToList()
+        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
         .Sum(x => x.EstimatedHour);
 
       if((dailyAssignedTicketTotalHours + estimatedHour) > 6)

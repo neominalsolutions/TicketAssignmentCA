@@ -31,10 +31,9 @@ namespace TicketAssignment.Domain.Services
 
       int weeklyAssignedTicketsTotalHours = employeeTicketRepository
         .FindWithCriteria(x => x.AssignedAt.Date >= weekStartDate.Date && x.AssignedAt.Date <= weekEndDate.Date)
-        .ToList()
         .Sum(x => x.EstimatedHour);
 
-      if((weeklyAssignedTicketsTotalHours + estimatedHour) > 40)
+      if((weeklyAssignedTicketsTotalHours + estimatedHour) > 30)
       {
         throw new NotImplementedException("Haftalık görev atama limiti aşıldı");
       }

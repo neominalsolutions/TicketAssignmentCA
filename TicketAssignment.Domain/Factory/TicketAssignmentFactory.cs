@@ -27,14 +27,14 @@ namespace TicketAssignment.Domain.Factory
     // 6 saat üsütnde farklı servis görevlensin
     public ITicketAssignment TicketServiceInstance(int estimatedHour)
     {
-      if (estimatedHour > 6 && estimatedHour <= 40)
+      if (estimatedHour > 6 && estimatedHour <= 30)
         return new WeeklyTicketAssignmentService(employeeTicketRepository, employeeRepository, ticketRepository);
       else if (estimatedHour < 6 && estimatedHour >= 1)
         return new DailyTicketAssignmentService(employeeTicketRepository, employeeRepository, ticketRepository);
-      else if (estimatedHour > 40)
+      else if (estimatedHour > 30)
         return new MontlyTicketAssigmentService();
       else
-        throw new Exception("1 saatten az görev ataması yapılamaz");
+        throw new Exception("1 saatten az görev ataması yapılamaz veya 120 saat üzerinde görev ataması yapılamaz.");
 
     }
   }

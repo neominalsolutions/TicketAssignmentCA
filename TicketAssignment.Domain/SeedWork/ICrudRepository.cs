@@ -26,8 +26,9 @@ namespace TicketAssignment.Domain.SeedWork
 
   // Interface Seggragation ile Read Write sorumluluklarını birbirinden ayırmış olduk
   // Entity olmayan bir nesneyi kabul etmiyoruz code defensing
-  public interface IRepository<TEntity>:IReadOnlyRepository<TEntity>
-    ,IWriteOnlyRepository<TEntity> where TEntity:Entity
+  public interface ICrudRepository<TEntity>:IReadOnlyRepository<TEntity>
+    ,IWriteOnlyRepository<TEntity> 
+    where TEntity:Entity
   {
 
   }

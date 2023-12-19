@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="SMS\" />
+    <Folder Include="SMS\Turkcell\" />
+    <Folder Include="SMS\SendGrid\" />
     <Folder Include="Storage\" />
   </ItemGroup>
 

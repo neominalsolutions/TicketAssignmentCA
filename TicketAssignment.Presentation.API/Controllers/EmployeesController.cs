@@ -19,9 +19,6 @@ namespace TicketAssignment.Presentation.API.Controllers
     //private readonly ITicketApplicationService ticketApplicationService;
     //private readonly IEmployeeApplicationService employeeApplicationService;
     //private readonly IEmployeeRepository employeeRepository;
-
-
-
     public EmployeesController(IMediator mediator)
     {
       this.mediator = mediator;
@@ -32,7 +29,10 @@ namespace TicketAssignment.Presentation.API.Controllers
     {
       //this.employeeRepository.FindAll();
 
-      await this.mediator.Send(request);
+      // indirect communication with mediator
+     await this.mediator.Send(request);
+      // direct communication
+      //ticketApplicationService.AssignTicket(request);
 
       return Created("",""); // 201 status kod
     }

@@ -8,7 +8,7 @@ using TicketAssignment.Domain.SeedWork;
 
 namespace TicketAssignment.Domain.Repositories
 {
-  public interface IEmployeeTicketRepository:IRepository<EmployeeTicket>
+  public interface IEmployeeTicketRepository:ICrudRepository<EmployeeTicket>
   {
   }
 }

@@ -36,7 +36,6 @@ namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
 
       // email gönderme vs gibi süreçleri yönetebilirim.
 
-
     }
   }
 }

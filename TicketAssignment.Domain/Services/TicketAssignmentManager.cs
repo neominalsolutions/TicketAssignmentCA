@@ -34,7 +34,7 @@ namespace TicketAssignment.Domain.Services
       // Atanacak olan işin haftalık mı yoksa günlük mü yoksa aylık mı atanacağını bulan buna göre çalışan bir servis tanımı yapalım
 
       var dailyAssignedTicketTotalHours = this.employeeTicketRepository
-        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
+        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date && x.EmployeeId == employeeId)
         .Sum(x => x.EstimatedHour);
 
       int weekOfDayIndex = (int)DateTime.Now.DayOfWeek; // 0-6
@@ -43,7 +43,7 @@ namespace TicketAssignment.Domain.Services
 
 
       int weeklyAssignedTicketsTotalHours = employeeTicketRepository
-        .FindWithCriteria(x => x.AssignedAt.Date >= weekStartDate.Date && x.AssignedAt.Date <= weekEndDate.Date)
+        .FindWithCriteria(x => x.AssignedAt.Date >= weekStartDate.Date && x.AssignedAt.Date <= weekEndDate.Date && x.EmployeeId == employeeId)
         .Sum(x => x.EstimatedHour);
 
 

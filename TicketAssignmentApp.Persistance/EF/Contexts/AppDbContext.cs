@@ -15,6 +15,9 @@ namespace TicketAssignmentApp.Persistance.EF.Contexts
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<EmployeeTicket> EmployeeTickets { get; set; }
 
+    public DbSet<Customer> Customers { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=TicketDB;uid=sa;pwd=12345");

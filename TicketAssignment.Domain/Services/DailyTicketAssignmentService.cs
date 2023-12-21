@@ -31,14 +31,14 @@ namespace TicketAssignment.Domain.Services
     {
 
    
-      var dailyAssignedTicketTotalHours =  this.employeeTicketRepository
-        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
-        .Sum(x => x.EstimatedHour);
+      //var dailyAssignedTicketTotalHours =  this.employeeTicketRepository
+      //  .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
+      //  .Sum(x => x.EstimatedHour);
 
-      if((dailyAssignedTicketTotalHours + estimatedHour) > 6)
-      {
-        throw new DailyTicketAssigmentOverflowException();
-      }
+      //if((dailyAssignedTicketTotalHours + estimatedHour) > 6)
+      //{
+      //  throw new DailyTicketAssigmentOverflowException();
+      //}
 
       var employee = employeeRepository.FindById(employeeId);
       var ticket = ticketRepository.FindById(ticketId);

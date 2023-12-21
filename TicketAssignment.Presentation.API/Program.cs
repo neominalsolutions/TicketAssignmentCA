@@ -1,6 +1,8 @@
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using TicketAssignment.Domain.Factory;
 using TicketAssignment.Domain.Repositories;
+using TicketAssignment.Domain.Services;
 using TicketAssignmentApp.Application.Features.Ticket.Handlers;
 using TicketAssignmentApp.Application.Features.Ticket.Validators;
 using TicketAssignmentApp.Infrastructure.Persistance.Dapper;
@@ -9,12 +11,15 @@ using TicketAssignmentApp.Persistance.EF.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 // Add services to the container.
 
 // servislerin IoC ye tarnýtýlamasý sürecinde web uygulama olmasý sebebi ile genelede scoped service tanýmlarýný tercih ederiz. 
 
 builder.Services.AddDbContext<AppDbContext>();
-builder.Services.AddTransient<TicketAssignmentFactory>(); // TicketAssigment Service Yönetimi
+builder.Services.AddScoped<TicketAssignmentFactory>(); // TicketAssigment Service Yönetimi
+builder.Services.AddScoped<TicketAssignmentManager>();
 
 // hizmet çalýþtýrma gibi controller,mediator,repository gibi web request bazlý çalýþn yapýlar.
 builder.Services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
@@ -23,14 +28,14 @@ builder.Services.AddScoped<ITicketRepository, EFTicketRepository>();
 builder.Services.AddScoped<IEmployeeTicketRepository, EFEmployeeTicketRepository>();
 
 
-
-builder.Services.AddControllers().AddFluentValidation(config =>
-{
-  config.RegisterValidatorsFromAssemblyContaining<AssignTicketValidator>();
-});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Fluent Validation Validator Assembly Load iþlemi
+builder.Services.AddValidatorsFromAssemblyContaining<CreateEmployeeRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
 
 // reflection application katmanýndaki tüm request handler sýnýflarýný otoload edip program tarafýnda ioc saðlayacak.
 builder.Services.AddMediatR(config =>

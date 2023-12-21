@@ -27,6 +27,7 @@ namespace TicketAssignment.Domain.Factory
     // 6 saat üsütnde farklı servis görevlensin
     public ITicketAssignment TicketServiceInstance(int estimatedHour)
     {
+      // Kriter bazlı instance yönetimi Factory Method Pattern.
       if (estimatedHour > 6 && estimatedHour <= 30)
         return new WeeklyTicketAssignmentService(employeeTicketRepository, employeeRepository, ticketRepository);
       else if (estimatedHour < 6 && estimatedHour >= 1)

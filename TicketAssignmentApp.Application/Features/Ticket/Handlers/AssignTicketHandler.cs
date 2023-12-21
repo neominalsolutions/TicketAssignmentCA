@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketAssignment.Domain.Entities;
 using TicketAssignment.Domain.Factory;
+using TicketAssignment.Domain.Services;
 using TicketAssignmentApp.Application.Features.Ticket.Dtos;
 
 namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
@@ -16,12 +17,14 @@ namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
     // AssignTicketHandler => TaskAssigmentService
     // indirection
     private TicketAssignmentFactory ticketAssignment;
+    private TicketAssignmentManager assignmentManager;
 
     // TicketAssignmentFactory servisi Dependecy Injection ile çağırıp
     // Zaten TicketAssignmentFactory Program.cs dosyasında IoC tarafından üretildi.
-    public AssignTicketHandler(TicketAssignmentFactory ticketAssignmentFactory)
+    public AssignTicketHandler(TicketAssignmentFactory ticketAssignmentFactory, TicketAssignmentManager assignmentManager)
     {
       this.ticketAssignment = ticketAssignmentFactory;
+      this.assignmentManager = assignmentManager;
     }
 
 
@@ -29,10 +32,14 @@ namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
     // Event Driven bir programlama mantığı ile yazılmış bir paket.
     public async Task Handle(AssignTicketDto request, CancellationToken cancellationToken)
     {
-      var ticketService = ticketAssignment
-        .TicketServiceInstance(request.EstimatedHour);
 
-      ticketService.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
+      // algoritmik olarak yönlendirme yapıyor.
+      assignmentManager.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
+
+      //var ticketService = ticketAssignment
+      //  .TicketServiceInstance(request.EstimatedHour);
+
+      //ticketService.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
 
       // email gönderme vs gibi süreçleri yönetebilirim.
 

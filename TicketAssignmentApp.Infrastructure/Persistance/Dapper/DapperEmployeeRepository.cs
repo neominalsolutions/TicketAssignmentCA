@@ -9,7 +9,7 @@ using TicketAssignmentApp.Persistance.EF.Contexts;
 
 namespace TicketAssignmentApp.Infrastructure.Persistance.Dapper
 {
-  public class DapperEmployeeRepository : DapperRepository<Employee, AppDbContext>, IEmployeeRepository
+    public class DapperEmployeeRepository : DapperRepository<Employee, AppDbContext>, IEmployeeRepository
   {
     public Employee FindEmployeeWithTickets(string employeId)
     {

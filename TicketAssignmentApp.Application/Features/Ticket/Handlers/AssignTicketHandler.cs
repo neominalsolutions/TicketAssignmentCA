@@ -34,12 +34,12 @@ namespace TicketAssignmentApp.Application.Features.Ticket.Handlers
     {
 
       // algoritmik olarak yönlendirme yapıyor.
-      assignmentManager.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
+      //assignmentManager.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
 
-      //var ticketService = ticketAssignment
-      //  .TicketServiceInstance(request.EstimatedHour);
+      var ticketService = ticketAssignment
+        .TicketServiceInstance(request.EstimatedHour);
 
-      //ticketService.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
+      ticketService.AssignTicket(request.TicketId, request.EmployeeId, request.EstimatedHour);
 
       // email gönderme vs gibi süreçleri yönetebilirim.
 

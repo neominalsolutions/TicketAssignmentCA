@@ -30,15 +30,15 @@ namespace TicketAssignment.Domain.Services
     public void AssignTicket(string ticketId, string employeeId, int estimatedHour)
     {
 
-   
-      //var dailyAssignedTicketTotalHours =  this.employeeTicketRepository
-      //  .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
-      //  .Sum(x => x.EstimatedHour);
 
-      //if((dailyAssignedTicketTotalHours + estimatedHour) > 6)
-      //{
-      //  throw new DailyTicketAssigmentOverflowException();
-      //}
+      var dailyAssignedTicketTotalHours = this.employeeTicketRepository
+        .FindWithCriteria(x => x.AssignedAt.Date == DateTime.Now.Date)
+        .Sum(x => x.EstimatedHour);
+
+      if ((dailyAssignedTicketTotalHours + estimatedHour) > 6)
+      {
+        throw new DailyTicketAssigmentOverflowException();
+      }
 
       var employee = employeeRepository.FindById(employeeId);
       var ticket = ticketRepository.FindById(ticketId);

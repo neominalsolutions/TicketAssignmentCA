@@ -44,8 +44,6 @@ builder.Services.AddMediatR(config =>
 });
 
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
